@@ -1,4 +1,4 @@
-require './lib/enigma.rb'
+require './lib/enigma'
 
 describe Enigma do
   before(:each) do
