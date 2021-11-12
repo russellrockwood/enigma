@@ -8,4 +8,6 @@ describe Enigma do
   it 'exists' do
     expect(@enigma).to be_a(Enigma)
   end
+
+  
 end
