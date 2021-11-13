@@ -20,12 +20,12 @@ class Enigma
     shifts = keys_offsets.map { |e| e.sum }
     reduced_shifts = shifts.map { |num| num % 27  }
 
-    shifts_labeled = {
-      a: reduced_shifts[0],
-      b: reduced_shifts[1],
-      c: reduced_shifts[2],
-      d: reduced_shifts[3],
-    }
+    # shifts_labeled = {
+    #   '0': reduced_shifts[0],
+    #   '1': reduced_shifts[1],
+    #   '2': reduced_shifts[2],
+    #   '3': reduced_shifts[3],
+    # }
   end
 
   def shift_letter(letter, number)
@@ -33,14 +33,29 @@ class Enigma
     shifted_letter = rotate_alphabet.rotate(number)[0]
   end
 
-  # def shift_four(letters, shifts)
-  #   binding.pry
-  # end
+  def shift_section(letters, shifts)
+    shifted_section = ''
+
+    index = 0
+    letters.each_char do |char|
+
+      shifted_section.concat(shift_letter(char, shifts[index]))
+      index += 1
+    end
+    
+    shifted_section
+  end
 
 
   def encrypt(message, key, date)
     # random_key = '%05d' % rand(5 ** 5)
-    
+    sections = message.chars.each_slice(4).map(&:join)
+
+    # sections.each do |section|
+    #
+    #   section.map { |char| char = char. }
+    #   binding.pry
+    # end
      # If the key is not included, generate a random key.
 
      # If the date is not included, use today’s date.
