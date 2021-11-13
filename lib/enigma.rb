@@ -28,34 +28,54 @@ class Enigma
     # }
   end
 
+
+  # def shift_section(letters, shifts)
+  #   shifted_section = ''
+  #
+  #   index = 0
+  #   letters.each_char do |char|
+  #     if !@alphabet.include?(char)
+  #       shifted_section.concat(char)
+  #     else
+  #       shifted_section.concat(shift_letter(char, shifts[index]))
+  #       index += 1
+  #     end
+  #   end
+  #
+  #   shifted_section
+  # end
+
   def shift_letter(letter, number)
     rotate_alphabet = @alphabet.rotate(@alphabet.index(letter))
     shifted_letter = rotate_alphabet.rotate(number)[0]
   end
 
-  def shift_section(letters, shifts)
-    shifted_section = ''
-
-    index = 0
-    letters.each_char do |char|
-
-      shifted_section.concat(shift_letter(char, shifts[index]))
-      index += 1
-    end
-    
-    shifted_section
-  end
-
-
   def encrypt(message, key, date)
     # random_key = '%05d' % rand(5 ** 5)
-    sections = message.chars.each_slice(4).map(&:join)
+    # sections = message.chars.each_slice(4).map(&:join)
+    shifts = get_shifts(key, date)
 
-    # sections.each do |section|
-    #
-    #   section.map { |char| char = char. }
-    #   binding.pry
-    # end
+    encrypted_message = ''
+    index = 0
+    message.each_char do |char|
+      if index > 3
+        index = 0
+      end
+
+      if !@alphabet.include?(char)
+        puts 'special'
+        encrypted_message.concat(char)
+      else
+        encrypted_message.concat(shift_letter(char, shifts[index]))
+        index += 1
+      end
+    end
+
+    encrypted_message
+    # shifted_message = sections.map do |section|
+    #   shift_section(section, shifts)
+    # end.join('')
+
      # If the key is not included, generate a random key.
 
      # If the date is not included, use today’s date.
