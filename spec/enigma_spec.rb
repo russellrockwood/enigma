@@ -12,12 +12,6 @@ describe Enigma do
   end
 
   it 'creates array with proper shifts' do
-    # expected = {
-    #   a: 3,
-    #   b: 0,
-    #   c: 19,
-    #   d: 20,
-    # }
     expected = [3, 0, 19, 20]
 
      expect(@enigma.get_shifts(@test_key, @test_date)).to eq(expected)
