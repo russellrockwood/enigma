@@ -12,12 +12,13 @@ describe Enigma do
   end
 
   it 'creates hash with proper shifts' do
-    expected = {
-      a: 3,
-      b: 0,
-      c: 19,
-      d: 20,
-    }
+    # expected = {
+    #   a: 3,
+    #   b: 0,
+    #   c: 19,
+    #   d: 20,
+    # }
+    expected = [3, 0, 19, 20]
 
      expect(@enigma.get_shifts(@test_key, @test_date)).to eq(expected)
   end
@@ -33,7 +34,16 @@ describe Enigma do
     expect(@enigma.shift_letter(letter_2, shift_2)).to eq('d')
   end
 
-  it 'encrypts messages' do
+  it 'correctly shifts string section' do
+    string = 'hell'
+    string_2 = 'rld'
+    shifts = @enigma.get_shifts(@test_key, @test_date)
+
+    expect(@enigma.shift_section(string, shifts)).to eq('kede')
+    expect(@enigma.shift_section(string_2, shifts)).to eq('ulw')
+  end
+
+  xit 'encrypts messages' do
     message = 'hello world'
 
     expect(@enigma.encrypt(message, @test_key, @test_date)).to eq('keder ohulw')
