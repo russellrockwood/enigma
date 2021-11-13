@@ -34,16 +34,13 @@ describe Enigma do
     expect(@enigma.shift_letter(letter_2, shift_2)).to eq('d')
   end
 
-  # xit 'correctly shifts string section' do
-  #   string = 'hell'
-  #   string_2 = 'rld'
-  #   string_3 = '!hell!'
-  #   shifts = @enigma.get_shifts(@test_key, @test_date)
-  #
-  #   expect(@enigma.shift_section(string, shifts)).to eq('kede')
-  #   expect(@enigma.shift_section(string_2, shifts)).to eq('ulw')
-  #   expect(@enigma.shift_section(string_3, shifts)).to eq('!kede!')
-  # end
+  it 'returns date in correct format' do
+    expect(@enigma.get_date.length).to eq(6)
+  end
+
+  it 'generates random key' do
+    expect(@enigma.random_key.length).to eq(6)
+  end
 
   it 'encrypts messages' do
     message = 'hello world'
@@ -52,5 +49,6 @@ describe Enigma do
     expect(@enigma.encrypt(message, @test_key, @test_date)).to eq('keder ohulw')
     expect(@enigma.encrypt(message_2, @test_key, @test_date)).to eq('keder !ohulw!')
   end
+
 
 end
