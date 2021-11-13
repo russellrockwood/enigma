@@ -39,16 +39,37 @@ describe Enigma do
   end
 
   it 'generates random key' do
-    expect(@enigma.random_key.length).to eq(6)
+    expect(@enigma.random_key.length).to eq(5)
+  end
+
+  it 'processes messages' do
+    shifts = [3, 0, 19, 20]
+    neg_shifts = [-3, 0, -19, -20]
+
+    expect(@enigma.process_message('hello world', shifts)).to eq("keder ohulw")
+    expect(@enigma.process_message("keder ohulw", neg_shifts)).to eq('hello world')
   end
 
   it 'encrypts messages' do
     message = 'hello world'
-    message_2 = 'hello !world!'
+    expected = {
+      encryption: "keder ohulw",
+      key: "02715",
+      date: "040895"
+    }
 
-    expect(@enigma.encrypt(message, @test_key, @test_date)).to eq('keder ohulw')
-    expect(@enigma.encrypt(message_2, @test_key, @test_date)).to eq('keder !ohulw!')
+    expect(@enigma.encrypt(message, @test_key, @test_date)).to eq(expected)
   end
 
+  it 'decrypts messages' do
+    message = 'keder ohulw'
+    expected = {
+      encryption: "hello world",
+      key: "02715",
+      date: "040895"
+    }
+
+      expect(@enigma.decrypt(message, @test_key, @test_date)).to eq(expected)
+    end
 
 end
