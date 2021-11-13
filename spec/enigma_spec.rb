@@ -17,4 +17,13 @@ describe Enigma do
      expect(@enigma.get_shifts(@test_key, @test_date)).to eq(expected)
   end
 
+  it 'shifts letters correctly' do
+    string_1 = 'hell'
+    string_2 = 'o wo'
+    shifts = @enigma.get_shifts(@test_key, @test_date)
+
+    expect(@enigma.shift_four(string_1, shifts)).to eq('kede')
+    expect(@enigma.shift_four(string_2, shifts)).to eq('r oh')
+  end
+
 end
