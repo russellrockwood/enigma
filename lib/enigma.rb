@@ -18,11 +18,29 @@ class Enigma
     keys_offsets = [keys,offsets].transpose
 
     shifts = keys_offsets.map { |e| e.sum }
+    reduced_shifts = shifts.map { |num| num % 27  }
+
+    shifts_labeled = {
+      a: reduced_shifts[0],
+      b: reduced_shifts[1],
+      c: reduced_shifts[2],
+      d: reduced_shifts[3],
+    }
   end
+
+  def shift_letter(letter, number)
+    rotate_alphabet = @alphabet.rotate(@alphabet.index(letter))
+    shifted_letter = rotate_alphabet.rotate(number)[0]
+  end
+
+  # def shift_four(letters, shifts)
+  #   binding.pry
+  # end
+
 
   def encrypt(message, key, date)
     # random_key = '%05d' % rand(5 ** 5)
-
+    
      # If the key is not included, generate a random key.
 
      # If the date is not included, use today’s date.

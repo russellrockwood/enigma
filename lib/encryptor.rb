@@ -1,8 +1,14 @@
+require 'date'
 
 module Encryptor
 
 end
 
+# Useful Methods:
+# Array#rotate
+# Date#strftime
+# Date::today
+# Enumerator#with_index
 
 # You should be able to generate random numbers with leading zeros. In the example shown, the random number was 2715, so it should be zero padded to make it a five digit number (02715)
 
