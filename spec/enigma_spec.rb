@@ -58,7 +58,7 @@ describe Enigma do
   it 'decrypts messages' do
     message = 'keder ohulw'
     expected = {
-      encryption: "hello world",
+      decryption: "hello world",
       key: "02715",
       date: "040895"
     }

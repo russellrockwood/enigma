@@ -8,25 +8,6 @@ class Enigma
     @alphabet = ("a".."z").to_a << " "
   end
 
-  def process_message(message, shifts)
-    message = message.downcase
-
-    processed_message = ''
-    index = 0
-    message.each_char do |char|
-      if index > 3
-        index = 0
-      end
-      if !@alphabet.include?(char)
-        processed_message.concat(char)
-      else
-        processed_message.concat(shift_letter(char, shifts[index]))
-        index += 1
-      end
-    end
-    processed_message
-  end
-
   def encrypt(message, key=nil, date=nil)
     if key == nil then key = random_key end
     if date == nil then date = get_date end
@@ -43,10 +24,10 @@ class Enigma
   def decrypt(message, key, date=nil)
     if date == nil then date = get_date end
     shifts = get_shifts(key, date).map { |num| num * -1  }
-    encrypted_message = process_message(message, shifts)
+    decrypted_message = process_message(message, shifts)
 
     decryption_info = {
-      encryption: encrypted_message,
+      decryption: decrypted_message,
       key: key,
       date: date
     }

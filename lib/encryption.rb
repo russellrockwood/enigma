@@ -26,4 +26,23 @@ module Encryption
   def random_key
     key = '%05d' % rand(5 ** 5)
   end
+
+  def process_message(message, shifts)
+    message = message.downcase
+
+    processed_message = ''
+    index = 0
+    message.each_char do |char|
+      if index > 3
+        index = 0
+      end
+      if !@alphabet.include?(char)
+        processed_message.concat(char)
+      else
+        processed_message.concat(shift_letter(char, shifts[index]))
+        index += 1
+      end
+    end
+    processed_message
+  end
 end
