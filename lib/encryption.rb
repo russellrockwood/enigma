@@ -13,4 +13,9 @@ module Encryption
     shifts = keys_offsets.map { |e| e.sum }
     reduced_shifts = shifts.map { |num| num % 27  }
   end
+
+  def shift_letter(letter, number)
+    rotate_alphabet = @alphabet.rotate(@alphabet.index(letter))
+    shifted_letter = rotate_alphabet.rotate(number)[0]
+  end
 end

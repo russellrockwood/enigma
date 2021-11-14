@@ -1,4 +1,4 @@
-require './lib/encryptor'
+require './lib/encryption'
 require 'date'
 require 'pry'
 # see 'working with files' lesson plan
@@ -6,11 +6,6 @@ class Enigma
   include Encryption
   def initialize
     @alphabet = ("a".."z").to_a << " "
-  end
-
-  def shift_letter(letter, number)
-    rotate_alphabet = @alphabet.rotate(@alphabet.index(letter))
-    shifted_letter = rotate_alphabet.rotate(number)[0]
   end
 
   def get_date
