@@ -50,13 +50,19 @@ class Enigma
   end
 
   def decrypt_txt
-    encrypted_txt_file = ARGV[0]
-    decrypted_new_file_name = ARGV[1]
+    txt_file_to_decrypt = ARGV[0]
+    new_decrypted_file_name = ARGV[1]
     input_key = ARGV[2]
     input_date = ARGV[3]
 
-    # $ ruby ./lib/decrypt.rb encrypted.txt decrypted.txt 82648 240818
-    # Created 'decrypted.txt' with the key 82648 and date 240818
+    file = File.open(txt_file_to_decrypt, "r")
+    message = file.read.chomp
+    decrypted_message = decrypt(message, input_key, input_date)
 
+    new_file = File.open(new_decrypted_file_name, "w")
+    new_file.write(decrypted_message[:decryption])
+    new_file.close
+
+    puts "Created \'#{new_decrypted_file_name}\' with the key #{decrypted_message[:key]} and date #{decrypted_message[:date]}"
   end
 end
