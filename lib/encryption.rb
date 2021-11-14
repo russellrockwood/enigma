@@ -18,4 +18,12 @@ module Encryption
     rotate_alphabet = @alphabet.rotate(@alphabet.index(letter))
     shifted_letter = rotate_alphabet.rotate(number)[0]
   end
+
+  def get_date
+    date = Time.now.strftime("%d/%m/%y").delete('/')
+  end
+
+  def random_key
+    key = '%05d' % rand(5 ** 5)
+  end
 end

@@ -1,19 +1,11 @@
 require './lib/encryption'
 require 'date'
 require 'pry'
-# see 'working with files' lesson plan
+
 class Enigma
   include Encryption
   def initialize
     @alphabet = ("a".."z").to_a << " "
-  end
-
-  def get_date
-    date = Time.now.strftime("%d/%m/%y").delete('/')
-  end
-
-  def random_key
-    key = '%05d' % rand(5 ** 5)
   end
 
   def process_message(message, shifts)
