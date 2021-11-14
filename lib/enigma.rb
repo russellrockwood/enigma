@@ -34,16 +34,14 @@ class Enigma
   end
 
   def encrypt_txt
-    puts ARGV[0], ARGV[1]
-
-    # $ ruby ./lib/encrypt.rb message.txt encrypted.txt
-    # Created 'encrypted.txt' with the key 82648 and date 240818
-
     file = File.open('./message.txt', "r")
     message = file.read.chomp
     encrypted_message = encrypt(message)
+
+    new_file = File.open(ARGV[1], "w")
+    new_file.write(encrypted_message[:encryption])
+    new_file.close
+
     puts "Created \'#{ARGV[1]}\' with the key #{encrypted_message[:key]} and date #{encrypted_message[:date]}"
-    # message.write("hello world!")
-    # message.close
   end
 end
