@@ -1,1 +1,1 @@
-require './lib/encryption'
+require './lib/enigma'
