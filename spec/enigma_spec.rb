@@ -1,4 +1,7 @@
 require './lib/enigma'
+require 'spec_helper'
+require 'simplecov'
+SimpleCov.start
 
 describe Enigma do
   before(:each) do
