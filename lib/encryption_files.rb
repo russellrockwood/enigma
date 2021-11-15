@@ -1,24 +1,28 @@
 module EncryptionFiles
   def process_txt
     message = get_message_from_txt(ARGV[0])
-    if ARGV.length > 2
+    if ARGV.length == 2
+      message_info = encrypt(message)
+      write_file(ARGV[1], message_info[:encryption])
+    elsif ARGV.length == 4
       message_info = decrypt(message, ARGV[2], ARGV[3])
       write_file(ARGV[1], message_info[:decryption])
     else
-      message_info = encrypt(message)
-      write_file(ARGV[1], message_info[:encryption])
+      puts 'Error'
+      puts 'To Encrypt: <file_name.txt> <new_encrypted_file_name.txt>'
+      puts 'To Decrypt: <encrypted_file_name.txt> <new_decrypted_file_name.txt> <key> <date>'
     end
     confirmation_message(ARGV[1], message_info)
   end
-  
+
   # def encrypt_txt
   #   message = get_message_from_txt(ARGV[0])
   #   message_info = encrypt(message)
   #   write_file(ARGV[1], message_info[:encryption])
   #   confirmation_message(ARGV[1], message_info)
   # end
-
-
+  #
+  #
   # def decrypt_txt
   #   message = get_message_from_txt(ARGV[0])
   #   message_info = decrypt(message, ARGV[2], ARGV[3])
