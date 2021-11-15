@@ -13,9 +13,7 @@ class Enigma
   def encrypt(message, key=nil, date=nil)
     if key == nil then key = random_key end
     if date == nil then date = get_date end
-    if !valid_key?(key) then return 'Invalid key'end
-
-
+    if !valid_key?(key) then return 'Invalid key' end
 
     shifts = get_shifts(key, date)
     encrypted_message = process_message(message, shifts)
@@ -29,7 +27,7 @@ class Enigma
 
   def decrypt(message, key, date=nil)
     if date == nil then date = get_date end
-    if !valid_key?(key) then return 'Invalid key'end
+    if !valid_key?(key) then return 'Invalid key' end
 
     shifts = get_shifts(key, date).map { |num| num * -1  }
     decrypted_message = process_message(message, shifts)
@@ -40,5 +38,4 @@ class Enigma
       date: date
     }
   end
-
 end

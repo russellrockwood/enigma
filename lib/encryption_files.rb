@@ -16,21 +16,6 @@ module EncryptionFiles
     confirmation_message(ARGV[1], message_info)
   end
 
-  # def encrypt_txt
-  #   message = get_message_from_txt(ARGV[0])
-  #   message_info = encrypt(message)
-  #   write_file(ARGV[1], message_info[:encryption])
-  #   confirmation_message(ARGV[1], message_info)
-  # end
-  #
-  #
-  # def decrypt_txt
-  #   message = get_message_from_txt(ARGV[0])
-  #   message_info = decrypt(message, ARGV[2], ARGV[3])
-  #   write_file(ARGV[1], message_info[:decryption])
-  #   confirmation_message(ARGV[1], message_info)
-  # end
-
   def get_message_from_txt(file_name)
     file = File.open(file_name, "r")
     file.read.chomp
