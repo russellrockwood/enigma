@@ -30,7 +30,10 @@ describe Enigma do
   end
 
   it 'returns date in correct format' do
+    expected = Time.now.strftime("%d/%m/%y").delete('/')
+
     expect(@enigma.get_date.length).to eq(6)
+    expect(@enigma.get_date).to eq(expected)
   end
 
   it 'checks for invalid keys' do
@@ -45,7 +48,10 @@ describe Enigma do
   end
 
   it 'generates random key' do
-    expect(@enigma.random_key.length).to eq(5)
+    random_key = @enigma.random_key
+
+    expect(random_key.length).to eq(5)
+    expect(@enigma.valid_key?(random_key)).to eq(true)
   end
 
   it 'processes messages' do
@@ -84,6 +90,13 @@ describe Enigma do
       expect(@enigma.get_message_from_txt('message.txt')).to eq(expected)
     end
 
+    it 'it returns correct message if no file exists with input name' do
+      file_name = 'no_file.txt'
+      expected = "Cannot locate file 'no_file.txt'"
+
+      expect(@enigma.get_message_from_txt(file_name)).to eq(expected)
+    end
+
     it 'creates confirmation message' do
       decryption_info =  {
         decryption: "hello world",
@@ -96,7 +109,7 @@ describe Enigma do
       expect(@enigma.confirmation_message(file_name, decryption_info)).to eq(expected)
     end
 
-    xit 'can write new text files' do
+    it 'can write new text files' do
       test_file = @enigma.write_file('test.txt', 'test text')
 
       expect(File.file?('test.txt')).to eq(true)

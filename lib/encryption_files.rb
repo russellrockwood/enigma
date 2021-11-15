@@ -18,7 +18,7 @@ module EncryptionFiles
 
   def get_message_from_txt(file_name)
     if !File.file?(file_name)
-      return "No File #{file_name}"
+      return "Cannot locate file \'#{file_name}\'"
     end
     file = File.open(file_name, "r")
     file.read.chomp

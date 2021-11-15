@@ -18,18 +18,18 @@ module Encryption
   end
 
   def get_date
-    date = Time.now.strftime("%d/%m/%y").delete('/')
+    Time.now.strftime("%d/%m/%y").delete('/')
   end
 
   def random_key
-    key = '%05d'% rand(6**6)
+    '%05d'% rand(6**6)
   end
 
   def valid_key?(key)
     if key.class != String
       return false
     end
-    
+
     if key.length != 5
       return false
     end
