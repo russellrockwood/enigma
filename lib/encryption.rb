@@ -1,5 +1,3 @@
-# require 'date'
-
 module Encryption
   def get_shifts(key,date)
     date_squared = (date.to_i ** 2).to_s

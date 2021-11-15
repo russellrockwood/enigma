@@ -1,36 +1,31 @@
 module EncryptionFiles
   def encrypt_txt
-    txt_file_to_encrypt = ARGV[0]
-    new_encrypted_file_name = ARGV[1]
-
-    file = File.open(txt_file_to_encrypt, "r")
-    message = file.read.chomp
-
-    encrypted_message = encrypt(message)
-
-    new_file = File.open(new_encrypted_file_name, "w")
-    new_file.write(encrypted_message[:encryption])
-    new_file.close
-
-    puts "Created \'#{new_encrypted_file_name}\' with the key #{encrypted_message[:key]} and date #{encrypted_message[:date]}"
+    message = get_message_from_txt(ARGV[0])
+    message_info = encrypt(message)
+    write_file(ARGV[1], message_info[:encryption])
+    confirmation_message(ARGV[1], message_info)
   end
 
   def decrypt_txt
-    txt_file_to_decrypt = ARGV[0]
-    new_decrypted_file_name = ARGV[1]
-    input_key = ARGV[2]
-    input_date = ARGV[3]
+    message = get_message_from_txt(ARGV[0])
+    message_info = decrypt(message, ARGV[2], ARGV[3])
+    write_file(ARGV[1], message_info[:decryption])
+    confirmation_message(ARGV[1], message_info)
+  end
 
-    file = File.open(txt_file_to_decrypt, "r")
-    message = file.read.chomp
+  def get_message_from_txt(file_name)
+    file = File.open(file_name, "r")
+    file.read.chomp
+  end
 
-    decrypted_message = decrypt(message, input_key, input_date)
-
-    new_file = File.open(new_decrypted_file_name, "w")
-    new_file.write(decrypted_message[:decryption])
+  def write_file(file_name, text)
+    new_file = File.open(file_name, "w")
+    new_file.write(text)
     new_file.close
+  end
 
-    puts "Created \'#{new_decrypted_file_name}\' with the key #{decrypted_message[:key]} and date #{decrypted_message[:date]}"
+  def confirmation_message(new_file_name, message_info)
+    puts "Created \'#{new_file_name}\' with the key #{message_info[:key]} and date #{message_info[:date]}"
   end
 
 end
