@@ -22,7 +22,7 @@ module Encryption
   end
 
   def random_key
-    key = '%05d' % rand(5 ** 5)
+    key = '%05d'% rand(6**6)
   end
 
   def process_message(message, shifts)
