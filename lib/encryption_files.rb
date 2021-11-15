@@ -13,10 +13,13 @@ module EncryptionFiles
       puts 'To Decrypt: <encrypted_file_name.txt> <new_decrypted_file_name.txt> <key> <date>'
       exit
     end
-    confirmation_message(ARGV[1], message_info)
+    puts confirmation_message(ARGV[1], message_info)
   end
 
   def get_message_from_txt(file_name)
+    if !File.file?(file_name)
+      return "No File #{file_name}"
+    end
     file = File.open(file_name, "r")
     file.read.chomp
   end
@@ -28,7 +31,7 @@ module EncryptionFiles
   end
 
   def confirmation_message(new_file_name, message_info)
-    puts "Created \'#{new_file_name}\' with the key #{message_info[:key]} and date #{message_info[:date]}"
+    "Created \'#{new_file_name}\' with the key #{message_info[:key]} and date #{message_info[:date]}"
   end
 
 end

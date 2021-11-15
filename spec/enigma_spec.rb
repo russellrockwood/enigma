@@ -1,7 +1,5 @@
+require './spec/spec_helper'
 require './lib/enigma'
-require 'spec_helper'
-require 'simplecov'
-SimpleCov.start
 
 describe Enigma do
   before(:each) do
@@ -78,6 +76,30 @@ describe Enigma do
     }
 
       expect(@enigma.decrypt(message, @test_key, @test_date)).to eq(expected)
+    end
+
+    it 'returns text from input files' do
+      expected = 'hello world!'
+
+      expect(@enigma.get_message_from_txt('message.txt')).to eq(expected)
+    end
+
+    it 'creates confirmation message' do
+      decryption_info =  {
+        decryption: "hello world",
+        key: "02715",
+        date: "040895"
+      }
+      file_name = 'decrypted.txt'
+      expected = "Created 'decrypted.txt' with the key 02715 and date 040895"
+
+      expect(@enigma.confirmation_message(file_name, decryption_info)).to eq(expected)
+    end
+
+    xit 'can write new text files' do
+      test_file = @enigma.write_file('test.txt', 'test text')
+
+      expect(File.file?('test.txt')).to eq(true)
     end
 
 end
