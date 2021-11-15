@@ -8,9 +8,10 @@ module EncryptionFiles
       message_info = decrypt(message, ARGV[2], ARGV[3])
       write_file(ARGV[1], message_info[:decryption])
     else
-      puts 'Error'
+      puts '* Error *'
       puts 'To Encrypt: <file_name.txt> <new_encrypted_file_name.txt>'
       puts 'To Decrypt: <encrypted_file_name.txt> <new_decrypted_file_name.txt> <key> <date>'
+      exit
     end
     confirmation_message(ARGV[1], message_info)
   end
