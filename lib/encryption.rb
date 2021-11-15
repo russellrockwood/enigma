@@ -25,6 +25,24 @@ module Encryption
     key = '%05d'% rand(6**6)
   end
 
+  def valid_key?(key)
+    if key.class != String
+      return false
+    end
+    
+    if key.length != 5
+      return false
+    end
+
+    key.each_char do |num|
+      if !('0'..'9').include?(num)
+        return false
+      end
+    end
+
+    true
+  end
+
   def process_message(message, shifts)
     message = message.downcase
 
