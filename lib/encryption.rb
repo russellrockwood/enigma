@@ -1,4 +1,4 @@
-require 'date'
+# require 'date'
 
 module Encryption
   def get_shifts(key,date)
