@@ -35,6 +35,17 @@ describe Enigma do
     expect(@enigma.get_date.length).to eq(6)
   end
 
+  it 'checks for invalid keys' do
+    key_1 = '00234'
+    key_2 = '8&k89'
+    key_3 = '123456'
+
+    expect(@enigma.valid_key?(key_1)).to eq(true)
+    expect(@enigma.valid_key?(key_2)).to eq(false)
+    expect(@enigma.valid_key?(key_3)).to eq(false)
+    expect(@enigma.valid_key?(@test_key)).to eq(true)
+  end
+
   it 'generates random key' do
     expect(@enigma.random_key.length).to eq(5)
   end
