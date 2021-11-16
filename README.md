@@ -28,6 +28,7 @@ Code can be found on Git Hub where it can be cloned to your local machine for fu
  - Encrypt and decrypt messages through IRB or Pry session.
 
 <img src="" width="777" />
+<img width="700" alt="Screen Shot 2021-11-15 at 11 53 33 PM" src="https://user-images.githubusercontent.com/63167887/141924669-bc9d2bef-092e-4325-9c36-99cffecd4be6.png">
 
 -
 
