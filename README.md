@@ -31,7 +31,7 @@ Code can be found on Git Hub where it can be cloned to your local machine for fu
 
  - Run encrypt.rb or decrypt.rb with command line arguments to create and decipher new text files.
 
-<img width="600" alt="Screen Shot 2021-11-16 at 12 13 59 AM" src="https://user-images.githubusercontent.com/63167887/141925148-e8e2ea38-c5b1-44e4-9e7f-a84ef066cf4d.png">
+<img width="800" alt="Screen Shot 2021-11-16 at 12 13 59 AM" src="https://user-images.githubusercontent.com/63167887/141925148-e8e2ea38-c5b1-44e4-9e7f-a84ef066cf4d.png">
 <img width="547" alt="Screen Shot 2021-11-16 at 12 15 13 AM" src="https://user-images.githubusercontent.com/63167887/141925150-fa4f2b1b-e2ae-4c2c-8417-c51c35075525.png">
 
 ## Room for Improvement
@@ -45,4 +45,4 @@ The following features can be further expanded upon to increase functionality of
 ## Acknowledgements
 - This project was inspired by an Turing Assignment Prompt
 - This project was based on [this prompt](https://backend.turing.edu/module1/projects/enigma/).
-- Many thanks to Brian Zanti, Dani Coleman, Proffessor T, and all Turing staff for their guidance during Mod 1.
+- Many thanks to Brian Zanti, Dani Coleman, Professor T, and all Turing staff for their guidance during Mod 1.
