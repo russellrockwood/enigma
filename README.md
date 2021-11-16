@@ -36,13 +36,13 @@ Code can be found on Git Hub where it can be cloned to your local machine for fu
 
 ## Room for Improvement
 
-The following features can be further expanded upon to increase functionality of the applications:
+The following features can be further expanded upon to increase functionality of the application:
 - Improvement to error handling
 - Additional class to decipher text without key or date
 - Html interface
 
 
 ## Acknowledgements
-- This project was inspired by an Turing Assignment Prompt
+- This project was inspired by a Turing Assignment Prompt
 - This project was based on [this prompt](https://backend.turing.edu/module1/projects/enigma/).
 - Many thanks to Brian Zanti, Dani Coleman, Professor T, and all Turing staff for their guidance during Mod 1.
