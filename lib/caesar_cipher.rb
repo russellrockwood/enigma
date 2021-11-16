@@ -1,6 +1,4 @@
-require 'date'
-
-module Encryption
+module CaesarCipher
   def get_shifts(key,date)
     date_squared = (date.to_i ** 2).to_s
     date_squared_last_four = date_squared[date_squared.length - 4, 4]
@@ -20,11 +18,29 @@ module Encryption
   end
 
   def get_date
-    date = Time.now.strftime("%d/%m/%y").delete('/')
+    Time.now.strftime("%d/%m/%y").delete('/')
   end
 
   def random_key
-    key = '%05d' % rand(5 ** 5)
+    '%05d'% rand(6**6)
+  end
+
+  def valid_key?(key)
+    if key.class != String
+      return false
+    end
+
+    if key.length != 5
+      return false
+    end
+
+    key.each_char do |num|
+      if !('0'..'9').include?(num)
+        return false
+      end
+    end
+
+    true
   end
 
   def process_message(message, shifts)

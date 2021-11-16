@@ -1,7 +1,5 @@
+require './spec/spec_helper'
 require './lib/enigma'
-require 'spec_helper'
-require 'simplecov'
-SimpleCov.start
 
 describe Enigma do
   before(:each) do
@@ -32,11 +30,28 @@ describe Enigma do
   end
 
   it 'returns date in correct format' do
+    expected = Time.now.strftime("%d/%m/%y").delete('/')
+
     expect(@enigma.get_date.length).to eq(6)
+    expect(@enigma.get_date).to eq(expected)
+  end
+
+  it 'checks for invalid keys' do
+    key_1 = 12234
+    key_2 = '8&k89'
+    key_3 = '123456'
+
+    expect(@enigma.valid_key?(key_1)).to eq(false)
+    expect(@enigma.valid_key?(key_2)).to eq(false)
+    expect(@enigma.valid_key?(key_3)).to eq(false)
+    expect(@enigma.valid_key?(@test_key)).to eq(true)
   end
 
   it 'generates random key' do
-    expect(@enigma.random_key.length).to eq(5)
+    random_key = @enigma.random_key
+
+    expect(random_key.length).to eq(5)
+    expect(@enigma.valid_key?(random_key)).to eq(true)
   end
 
   it 'processes messages' do
@@ -47,7 +62,7 @@ describe Enigma do
     expect(@enigma.process_message("keder ohulw", neg_shifts)).to eq('hello world')
   end
 
-  it 'encrypts messages' do
+  it 'returns encryption information' do
     message = 'hello world'
     expected = {
       encryption: "keder ohulw",
@@ -58,7 +73,7 @@ describe Enigma do
     expect(@enigma.encrypt(message, @test_key, @test_date)).to eq(expected)
   end
 
-  it 'decrypts messages' do
+  it 'returns decryption information' do
     message = 'keder ohulw'
     expected = {
       decryption: "hello world",
@@ -68,5 +83,4 @@ describe Enigma do
 
       expect(@enigma.decrypt(message, @test_key, @test_date)).to eq(expected)
     end
-
 end
