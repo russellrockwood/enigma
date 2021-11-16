@@ -1,11 +1,8 @@
-require './lib/encryption'
-require './lib/encryption_files'
+require './lib/caesar_cipher'
 require 'date'
-require 'pry'
 
 class Enigma
-  include EncryptionFiles
-  include Encryption
+  include CaesarCipher
   def initialize
     @alphabet = ("a".."z").to_a << " "
   end

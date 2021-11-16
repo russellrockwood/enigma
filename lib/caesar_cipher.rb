@@ -1,4 +1,4 @@
-module Encryption
+module CaesarCipher
   def get_shifts(key,date)
     date_squared = (date.to_i ** 2).to_s
     date_squared_last_four = date_squared[date_squared.length - 4, 4]

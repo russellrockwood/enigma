@@ -1,5 +1,8 @@
-module EncryptionFiles
-  def process_txt
+require './lib/enigma'
+
+class EnigmaCommandLine < Enigma
+
+  def process_txt_file
     message = get_message_from_txt(ARGV[0])
     if ARGV.length == 2
       message_info = encrypt(message)
