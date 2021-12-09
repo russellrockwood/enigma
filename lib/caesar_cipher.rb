@@ -22,15 +22,11 @@ module CaesarCipher
   end
 
   def random_key
-    '%05d'% rand(6**6)
+    '%05d'% rand(10**5)
   end
 
   def valid_key?(key)
-    if key.class != String
-      return false
-    end
-
-    if key.length != 5
+    if key.class != String || key.length != 5
       return false
     end
 
