@@ -7,32 +7,28 @@ class Enigma
     @alphabet = ("a".."z").to_a << " "
   end
 
-  def encrypt(message, key=nil, date=nil)
+  def encrypt(message, key=nil, date=nil, dir=1)
     if key == nil then key = random_key end
     if date == nil then date = get_date end
     if !valid_key?(key) then return 'Invalid key' end
 
-    shifts = get_shifts(key, date)
-    encrypted_message = process_message(message, shifts)
+    shifts = get_shifts(key, date).map { |num| num * dir  }
+    message = process_message(message, shifts)
+    if dir == 1
+      label = :encryption
+    else
+      label = :decryption
+    end
 
-    ecryption_info = {
-      encryption: encrypted_message,
+    info = {
       key: key,
       date: date
     }
+    info[label] = message
+    info
   end
 
-  def decrypt(message, key, date=nil)
-    if date == nil then date = get_date end
-    if !valid_key?(key) then return 'Invalid key' end
-
-    shifts = get_shifts(key, date).map { |num| num * -1  }
-    decrypted_message = process_message(message, shifts)
-
-    decryption_info = {
-      decryption: decrypted_message,
-      key: key,
-      date: date
-    }
+  def decrypt(message, key, date=nil, dir=-1)
+    encrypt(message, key, date, dir)
   end
 end
